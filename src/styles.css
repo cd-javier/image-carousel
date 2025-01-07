@@ -15,6 +15,7 @@ body {
 
 .carousel-frame {
   overflow: hidden;
+  scroll-behavior: smooth;
 }
 
 .carousel-wrapper {
