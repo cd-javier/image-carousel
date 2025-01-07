@@ -3,10 +3,7 @@ function imageCarousel(targetId, timeoutDelay) {
   const nextArrow = carouselContainer.querySelector('.arrow-r');
   const prevArrow = carouselContainer.querySelector('.arrow-l');
   const imgArr = carouselContainer.querySelectorAll('img');
-  const dotNavWrapper = carouselContainer.querySelector(
-    '.dot-navigation-wrapper'
-  );
-  const carouselLength = imgArr.length - 1;
+  
   let currentImg = 0; // Counter to keep track of the image currently being shown
   let autoNextImg; // Variable to store the setTimeout
 
@@ -22,18 +19,17 @@ function imageCarousel(targetId, timeoutDelay) {
 
   // Returns the value of the next/prev image
   function getNextImg() {
-    if (currentImg < carouselLength) {
+    if (currentImg < imgArr.length - 1) {
       return currentImg + 1;
     } else {
       return 0;
     }
   }
-
   function getPrevImg() {
     if (currentImg > 0) {
       return currentImg - 1;
     } else {
-      return carouselLength;
+      return imgArr.length - 1;
     }
   }
 
@@ -55,11 +51,16 @@ function imageCarousel(targetId, timeoutDelay) {
   }
 
   // Adds dot navigation
+  const dotNavWrapper = document.createElement('div');
+  dotNavWrapper.classList.add('dot-nav-wrapper');
   imgArr.forEach(() => {
     const singleDot = document.createElement('div');
     singleDot.classList.add('nav-dot');
     dotNavWrapper.appendChild(singleDot);
   });
+  carouselContainer.appendChild(dotNavWrapper);
+
+  // Creates an array with every dot
   const dotArr = dotNavWrapper.querySelectorAll('.nav-dot');
 
   // Adds class to the corresponding dot
@@ -68,12 +69,14 @@ function imageCarousel(targetId, timeoutDelay) {
     dotArr[i].classList.add('selected-dot');
   }
 
+  // Event listeners
   nextArrow.addEventListener('click', scrollNextImg);
   prevArrow.addEventListener('click', scrollPrevImg);
   dotArr.forEach((dot, index) => {
     dot.addEventListener('click', () => scrollImg(index));
   });
-  selectDot(0);
+
+  selectDot(0); // Selects the first dot
 }
 
 export default imageCarousel;
