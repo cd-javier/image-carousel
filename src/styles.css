@@ -10,6 +10,7 @@ body {
   margin: 0 auto;
 
   position: relative;
+  user-select: none;
 }
 
 .carousel-frame {
