@@ -8,6 +8,8 @@ body {
   width: 100%;
   max-width: 1024px;
   margin: 0 auto;
+
+  position: relative;
 }
 
 .carousel-frame {
@@ -20,4 +22,28 @@ body {
 
 img {
   width: 100%;
+}
+
+.carousel-arrow {
+  height: 32px;
+  width: 32px;
+  background-color: white;
+  opacity: 0.8;
+  border-radius: 100%;
+
+  position: absolute;
+  top: 50%;
+  cursor: pointer;
+}
+
+.arrow-l {
+  left: 1rem;
+}
+
+.arrow-r {
+  right: 1rem;
+}
+
+.carousel-arrow svg {
+  height: inherit;
 }
