@@ -4,11 +4,8 @@ body {
   padding: 1rem;
 }
 
+/* SET VALUES */
 .carousel-container {
-  width: 100%;
-  max-width: 1024px;
-  margin: 0 auto;
-
   position: relative;
   user-select: none;
 }
@@ -27,12 +24,6 @@ img {
 }
 
 .carousel-arrow {
-  height: 32px;
-  width: 32px;
-  background-color: white;
-  opacity: 0.8;
-  border-radius: 100%;
-
   position: absolute;
   top: 50%;
   cursor: pointer;
@@ -62,14 +53,32 @@ img {
 }
 
 .nav-dot {
-  height: 10px;
-  width: 10px;
   border-radius: 100%;
-  background-color: white;
-  opacity: 0.5;
   cursor: pointer;
 }
 
 .selected-dot {
-  opacity: 1;
+  opacity: 1 !important;
+}
+
+/* CUSTOMIZABLE VALUES */
+.carousel-container {
+  width: 100%;
+  max-width: 1024px;
+  margin: 0 auto;
+}
+
+.carousel-arrow {
+  height: 32px;
+  width: 32px;
+  background-color: white;
+  opacity: 0.8;
+  border-radius: 100%;
+}
+
+.nav-dot {
+  height: 10px;
+  width: 10px;
+  background-color: white;
+  opacity: 0.5;
 }
