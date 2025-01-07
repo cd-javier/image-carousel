@@ -20,23 +20,21 @@ function imageCarousel(targetId, timeoutDelay) {
     autoNextImg = setTimeout(scrollNextImg, timeoutDelay);
   }
 
-  // Updates the value of currentImg counter and returns is value
+  // Returns the value of the next/prev image
   function getNextImg() {
     if (currentImg < carouselLength) {
-      currentImg++;
+      return currentImg + 1;
     } else {
-      currentImg = 0;
+      return 0;
     }
-    return currentImg;
   }
 
   function getPrevImg() {
     if (currentImg > 0) {
-      currentImg--;
+      return currentImg - 1;
     } else {
-      currentImg = carouselLength;
+      return carouselLength;
     }
-    return currentImg;
   }
 
   // Scrolls to selected image
@@ -44,6 +42,7 @@ function imageCarousel(targetId, timeoutDelay) {
     imgArr[i].scrollIntoView();
     selectDot(i);
     if (timeoutDelay) restartTimeout(); // Restarts the timer if there is one
+    currentImg = i;
   }
 
   // Scrolls to next/prev image
@@ -71,6 +70,9 @@ function imageCarousel(targetId, timeoutDelay) {
 
   nextArrow.addEventListener('click', scrollNextImg);
   prevArrow.addEventListener('click', scrollPrevImg);
+  dotArr.forEach((dot, index) => {
+    dot.addEventListener('click', () => scrollImg(index));
+  });
   selectDot(0);
 }
 
