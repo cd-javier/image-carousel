@@ -4,10 +4,20 @@ function imgCarousel(targetId, timeoutDelay) {
   const prevArrow = carouselContainer.querySelector('.arrow-l');
   const imgArr = carouselContainer.querySelectorAll('img');
   const carouselLength = imgArr.length - 1;
-  let currentImg = 0;
-  let autoNextImg = setTimeout(scrollNextImg, timeoutDelay);
+  let currentImg = 0; // Counter to keep track of the image currently being shown
+  let autoNextImg; // Variable to store the setTimeout
 
-  // Updates the currentImg counter and returns is value
+  if (timeoutDelay) {
+    // Only active if the user inputs a value
+    autoNextImg = setTimeout(scrollNextImg, timeoutDelay);
+  }
+
+  function restartTimeout() {
+    clearTimeout(autoNextImg);
+    autoNextImg = setTimeout(scrollNextImg, timeoutDelay);
+  }
+
+  // Updates the value of currentImg counter and returns is value
   function getNextImg() {
     if (currentImg < carouselLength) {
       currentImg++;
@@ -28,7 +38,7 @@ function imgCarousel(targetId, timeoutDelay) {
   // Scrolls to selected image
   function scrollImg(i) {
     imgArr[i].scrollIntoView();
-    restartTimeout(); // Restarts the timer
+    if (timeoutDelay) restartTimeout(); // Restarts the timer if there is one
   }
 
   // Scrolls to next/prev image
@@ -38,11 +48,6 @@ function imgCarousel(targetId, timeoutDelay) {
 
   function scrollPrevImg() {
     scrollImg(getPrevImg());
-  }
-
-  function restartTimeout() {
-    clearTimeout(autoNextImg);
-    autoNextImg = setTimeout(scrollNextImg, timeoutDelay);
   }
 
   nextArrow.addEventListener('click', scrollNextImg);
