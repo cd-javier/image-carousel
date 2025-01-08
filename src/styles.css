@@ -19,11 +19,12 @@ body {
   display: flex;
 }
 
-img {
+.carousel-wrapper img {
   width: 100%;
 }
 
-.carousel-arrow {
+.arrow-l,
+.arrow-r {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
@@ -41,7 +42,8 @@ img {
   right: 1rem;
 }
 
-.carousel-arrow svg {
+.arrow-l svg,
+.arrow-r svg {
   height: inherit;
 }
 
@@ -79,7 +81,8 @@ img {
   margin: 0 auto;
 }
 
-.carousel-arrow {
+.arrow-l,
+.arrow-r {
   height: 32px;
   width: 32px;
   
