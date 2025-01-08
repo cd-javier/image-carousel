@@ -65,8 +65,7 @@ function imageCarousel(targetId, timeoutDelay) {
 
   // Adds class to the corresponding dot
   function selectDot(i) {
-    dotArr.forEach((dot) => dot.classList.remove('selected-dot'));
-    dotArr[i].classList.add('selected-dot');
+    dotArr.forEach((dot, index) => dot.classList.toggle('selected-dot', i === index));
   }
 
   // Event listeners
