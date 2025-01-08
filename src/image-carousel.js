@@ -1,4 +1,4 @@
-function imageCarousel(targetId, timeoutDelay) {
+function imageCarousel(targetId, timeoutDelay, aspectRatio = '16/9') {
   const carouselContainer = document.getElementById(`${targetId}`);
   const nextArrow = carouselContainer.querySelector('.arrow-r');
   const prevArrow = carouselContainer.querySelector('.arrow-l');
@@ -51,6 +51,14 @@ function imageCarousel(targetId, timeoutDelay) {
     scrollImg(getPrevImg());
   }
 
+  // Adjust the size of the carousel to respect aspect ratio
+  function adjustCarouselHeight() {
+    const width = carouselContainer.offsetWidth;
+    const ratio = aspectRatio.split('/');
+    const height = (width * ratio[1]) / ratio[0];
+    carouselContainer.style.height = `${height}px`;
+  }
+
   // Adds dot navigation
   const dotNavWrapper = document.createElement('div');
   dotNavWrapper.classList.add('dot-nav-wrapper');
@@ -84,9 +92,11 @@ function imageCarousel(targetId, timeoutDelay) {
   dotArr.forEach((dot, index) => {
     dot.addEventListener('click', () => scrollImg(index));
   });
+  window.addEventListener('resize', adjustCarouselHeight);
 
   selectDot(0); // Selects the first dot
   unhideImg(0);
+  adjustCarouselHeight();
 }
 
 export default imageCarousel;

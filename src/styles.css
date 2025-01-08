@@ -8,26 +8,30 @@ body {
 .carousel-container {
   position: relative;
   user-select: none;
+  background-color: var(--carousel-bg);
 }
 
 .carousel-frame {
   overflow: hidden;
   scroll-behavior: smooth;
+  height: inherit;
 }
 
 .carousel-wrapper {
   display: flex;
+  height: inherit;
 }
 
 .carousel-wrapper img {
   width: 100%;
-  opacity: 0.5;  
-  transition: opacity 0.5s ease-out;  
+  object-fit: contain;
+  opacity: 0.5;
+  transition: opacity 0.5s ease-out;
 }
 
 .carousel-wrapper img.visible-img {
   opacity: 1;
-  transition: opacity 0.5s ease-out 0.2s;  
+  transition: opacity 0.5s ease-out 0.2s;
 }
 
 .arrow-l,
@@ -80,6 +84,7 @@ body {
 :root {
   --nav-color: white;
   --arrow-color: black;
+  --carousel-bg: grey;
 }
 
 .carousel-container {
