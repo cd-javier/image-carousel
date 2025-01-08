@@ -34,8 +34,9 @@ function imageCarousel(targetId, timeoutDelay, aspectRatio = '16/9') {
   }
 
   // Scrolls to selected image
-  function scrollImg(i) {
-    imgArr[i].scrollIntoView();
+  function scrollImg(i, smoothScroll = true) {
+    const behavior = smoothScroll ? 'smooth' : 'instant';
+    imgArr[i].scrollIntoView({ behavior: behavior, inline: 'center' });
     selectDot(i);
     unhideImg(i);
     if (timeoutDelay) restartTimeout(); // Restarts the timer if there is one
@@ -57,6 +58,7 @@ function imageCarousel(targetId, timeoutDelay, aspectRatio = '16/9') {
     const ratio = aspectRatio.split('/');
     const height = (width * ratio[1]) / ratio[0];
     carouselContainer.style.height = `${height}px`;
+    scrollImg(currentImg, false);
   }
 
   // Adds dot navigation
@@ -86,6 +88,13 @@ function imageCarousel(targetId, timeoutDelay, aspectRatio = '16/9') {
     );
   }
 
+  // Initiates the starting values
+  function init() {
+    selectDot(0);
+    unhideImg(0);
+    adjustCarouselHeight();
+  }
+
   // Event listeners
   nextArrow.addEventListener('click', scrollNextImg);
   prevArrow.addEventListener('click', scrollPrevImg);
@@ -94,9 +103,7 @@ function imageCarousel(targetId, timeoutDelay, aspectRatio = '16/9') {
   });
   window.addEventListener('resize', adjustCarouselHeight);
 
-  selectDot(0); // Selects the first dot
-  unhideImg(0);
-  adjustCarouselHeight();
+  init();
 }
 
 export default imageCarousel;

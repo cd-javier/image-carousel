@@ -13,7 +13,6 @@ body {
 
 .carousel-frame {
   overflow: hidden;
-  scroll-behavior: smooth;
   height: inherit;
 }
 
@@ -27,6 +26,13 @@ body {
   object-fit: contain;
   opacity: 0.5;
   transition: opacity 0.5s ease-out;
+}
+
+.carousel-wrapper img:first-child {
+  margin-left: 100%;
+}
+.carousel-wrapper img:last-child {
+  margin-right: 100%;
 }
 
 .carousel-wrapper img.visible-img {
