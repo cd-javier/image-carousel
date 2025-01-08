@@ -113,6 +113,9 @@ function imageCarousel(targetId, timeoutDelay, aspectRatio = '16/9') {
   dotArr.forEach((dot, index) => {
     dot.addEventListener('click', () => scrollImg(index));
   });
+  imgArr.forEach((img, index) => {
+    img.addEventListener('click', () => scrollImg(index));
+  });
   window.addEventListener('resize', adjustCarouselHeight);
 
   init();
