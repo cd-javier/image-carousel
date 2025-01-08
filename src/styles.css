@@ -28,16 +28,14 @@ body {
   transition: opacity 0.5s ease-out;
 }
 
-.carousel-wrapper img:first-child {
-  margin-left: 100%;
-}
-.carousel-wrapper img:last-child {
-  margin-right: 100%;
-}
-
 .carousel-wrapper img.visible-img {
   opacity: 1;
   transition: opacity 0.5s ease-out 0.2s;
+}
+
+.carousel-buffer {
+  width: 100%;
+  flex-shrink: 0;
 }
 
 .arrow-l,

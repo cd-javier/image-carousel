@@ -88,8 +88,20 @@ function imageCarousel(targetId, timeoutDelay, aspectRatio = '16/9') {
     );
   }
 
+  // Adds buffer to start and end of the carousel
+  function addBuffers() {
+    const carouselWrapper =
+      carouselContainer.querySelector('.carousel-wrapper');
+    const firstBuffer = document.createElement('div');
+    firstBuffer.classList.add('carousel-buffer');
+    const lastBuffer = firstBuffer.cloneNode(true);
+    carouselWrapper.prepend(firstBuffer);
+    carouselWrapper.appendChild(lastBuffer);
+  }
+
   // Initiates the starting values
   function init() {
+    addBuffers();
     selectDot(0);
     unhideImg(0);
     adjustCarouselHeight();
