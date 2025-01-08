@@ -1,3 +1,5 @@
+import swipeEvent from './swipe-events';
+
 function imageCarousel(targetId, timeoutDelay, aspectRatio = '16/9') {
   const carouselContainer = document.getElementById(`${targetId}`);
   const nextArrow = carouselContainer.querySelector('.arrow-r');
@@ -105,18 +107,23 @@ function imageCarousel(targetId, timeoutDelay, aspectRatio = '16/9') {
     selectDot(0);
     unhideImg(0);
     adjustCarouselHeight();
+    
+    // Event listeners
+    nextArrow.addEventListener('click', scrollNextImg);
+    prevArrow.addEventListener('click', scrollPrevImg);
+    dotArr.forEach((dot, index) => {
+      dot.addEventListener('click', () => scrollImg(index));
+    });
+    imgArr.forEach((img, index) => {
+      img.addEventListener('click', () => scrollImg(index));
+    });
+    window.addEventListener('resize', adjustCarouselHeight);
+    swipeEvent({
+      target: carouselContainer,
+      leftFunction: scrollNextImg,
+      rightFunction: scrollPrevImg,
+    });
   }
-
-  // Event listeners
-  nextArrow.addEventListener('click', scrollNextImg);
-  prevArrow.addEventListener('click', scrollPrevImg);
-  dotArr.forEach((dot, index) => {
-    dot.addEventListener('click', () => scrollImg(index));
-  });
-  imgArr.forEach((img, index) => {
-    img.addEventListener('click', () => scrollImg(index));
-  });
-  window.addEventListener('resize', adjustCarouselHeight);
 
   init();
 }
