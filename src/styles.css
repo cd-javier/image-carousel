@@ -21,6 +21,13 @@ body {
 
 .carousel-wrapper img {
   width: 100%;
+  opacity: 0.5;  
+  transition: opacity 0.5s ease-out;  
+}
+
+.carousel-wrapper img.visible-img {
+  opacity: 1;
+  transition: opacity 0.5s ease-out 0.2s;  
 }
 
 .arrow-l,
@@ -85,7 +92,7 @@ body {
 .arrow-r {
   height: 32px;
   width: 32px;
-  
+
   opacity: 0.8;
   border-radius: 100%;
 }

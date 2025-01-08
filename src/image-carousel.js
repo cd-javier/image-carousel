@@ -3,7 +3,7 @@ function imageCarousel(targetId, timeoutDelay) {
   const nextArrow = carouselContainer.querySelector('.arrow-r');
   const prevArrow = carouselContainer.querySelector('.arrow-l');
   const imgArr = carouselContainer.querySelectorAll('img');
-  
+
   let currentImg = 0; // Counter to keep track of the image currently being shown
   let autoNextImg; // Variable to store the setTimeout
 
@@ -37,6 +37,7 @@ function imageCarousel(targetId, timeoutDelay) {
   function scrollImg(i) {
     imgArr[i].scrollIntoView();
     selectDot(i);
+    unhideImg(i);
     if (timeoutDelay) restartTimeout(); // Restarts the timer if there is one
     currentImg = i;
   }
@@ -65,7 +66,16 @@ function imageCarousel(targetId, timeoutDelay) {
 
   // Adds class to the corresponding dot
   function selectDot(i) {
-    dotArr.forEach((dot, index) => dot.classList.toggle('selected-dot', i === index));
+    dotArr.forEach((dot, index) =>
+      dot.classList.toggle('selected-dot', i === index)
+    );
+  }
+
+  // Hides all images except for corresponding one
+  function unhideImg(i) {
+    imgArr.forEach((img, index) =>
+      img.classList.toggle('visible-img', i === index)
+    );
   }
 
   // Event listeners
@@ -76,6 +86,7 @@ function imageCarousel(targetId, timeoutDelay) {
   });
 
   selectDot(0); // Selects the first dot
+  unhideImg(0);
 }
 
 export default imageCarousel;
